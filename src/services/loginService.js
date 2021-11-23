@@ -6,6 +6,9 @@ export const loginService = async (userData) => {
   const deviceId = !JSON.parse(localStorage.getItem('deviceId'))
     ? uuid()
     : JSON.parse(localStorage.getItem('deviceId'));
+  if (!JSON.parse(localStorage.getItem('deviceId'))) {
+    localStorage.setItem('deviceId', JSON.stringify(deviceId));
+  }
   const response = await fetch('admin/login', {
     method: 'POST',
     headers: {

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useForm } from '../hooks/useForm';
-import { fetchInitialData } from '../utils/fetchInitialData';
-import { loginService } from '../services/loginService';
-import ErrorMessage from './ErrorMessage';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
+import { fetchInitialData } from '../../utils/fetchInitialData';
+import { loginService } from '../../services/loginService';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import './LoginForm.scss';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [initialData, setInitialData] = useState([]);
   const [formState, setFormState] = useForm({
     provider: '',
@@ -26,6 +28,12 @@ const LoginForm = () => {
     getInitialData();
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/appliance-status');
+    }
+  }, []);
+
   const { data, bannerMessage } = initialData;
 
   const options = data?.map((item) => (
@@ -43,6 +51,11 @@ const LoginForm = () => {
 
     if (!response.token && response.message) {
       setErrorMessage(response.message);
+    }
+
+    if (response.token) {
+      localStorage.setItem('token', JSON.stringify(response.token));
+      navigate('/appliance-status');
     }
   };
 

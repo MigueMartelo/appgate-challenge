@@ -1,11 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
-import LoginForm from './components/LoginForm';
+import ApplianceStatus from './components/ApplianceStatus/ApplianceStatus';
+import LoginForm from './components/LoginForm/LoginForm';
 
 function App() {
   return (
     <div className="App">
       <h1>appgate SDP</h1>
-      <LoginForm />
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/appliance-status" element={<ApplianceStatus />} />
+      </Routes>
     </div>
   );
 }
