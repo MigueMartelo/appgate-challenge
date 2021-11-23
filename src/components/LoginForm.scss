@@ -1,0 +1,23 @@
+@import '../colors';
+
+.login {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-secondary;
+  padding: 50px;
+  border-radius: 5px;
+  width: 50%;
+  &-form {
+    display: grid;
+    width: 100%;
+    text-align: left;
+    &__btn {
+      background-color: $orange-color;
+      padding: 10px;
+      border: none;
+      margin-top: 10px;
+      color: $white-color;
+    }
+  }
+}
