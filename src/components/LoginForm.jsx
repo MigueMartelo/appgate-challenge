@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from '../hooks/useForm';
 import { fetchInitialData } from '../utils/fetchInitialData';
+import { loginService } from '../services/loginService';
+import ErrorMessage from './ErrorMessage';
 import './LoginForm.scss';
 
 const LoginForm = () => {
@@ -11,6 +13,7 @@ const LoginForm = () => {
     password: '',
     keepsigned: false
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { provider, username, password, keepsigned } = formState;
 
@@ -31,10 +34,23 @@ const LoginForm = () => {
     </option>
   ));
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const userData = { providerName: provider, username, password };
+
+    const response = await loginService(userData);
+
+    if (!response.token && response.message) {
+      setErrorMessage(response.message);
+    }
+  };
+
   return (
     <div className="login">
       <p>{bannerMessage}</p>
-      <form className="login-form">
+      {errorMessage && <ErrorMessage message={errorMessage} />}
+      <form className="login-form" onSubmit={handleSubmit}>
         <label htmlFor="provider">Indentity Provider</label>
         <select name="provider" value={provider} onChange={setFormState}>
           <option value="">Select the provider</option>

@@ -1,0 +1,9 @@
+@import '../colors';
+
+.error-message {
+  background-color: $background-primary;
+  padding: 15px;
+  text-align: center;
+  color: red;
+  margin-bottom: 10px;
+}
