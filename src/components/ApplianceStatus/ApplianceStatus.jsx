@@ -14,17 +14,40 @@ const ApplianceStatus = () => {
     }
   }, []);
 
-  console.log('token', token);
-
   const URL = 'admin/stats/appliances';
   const stateData = useFetch(URL, token);
 
-  console.log(stateData);
+  const applianceDataTable = stateData?.data?.map((appliance) => (
+    <tr key={appliance.id}>
+      <td>{appliance.name}</td>
+      <td>{appliance.status}</td>
+      <td>{appliance.cpu}</td>
+      <td>{appliance.memory}</td>
+      <td>
+        {appliance.network.rxSpeed}/{appliance.network.txSpeed}
+      </td>
+      <td>{appliance.disk}</td>
+      <td>{appliance.version}</td>
+    </tr>
+  ));
 
   return (
     <div>
       <h1>ApplianceStatus</h1>
-      {stateData.loading && <div>Loading</div>}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>CPU</th>
+            <th>Memory</th>
+            <th>Network out/in</th>
+            <th>Disk</th>
+            <th>Version</th>
+          </tr>
+        </thead>
+        <tbody>{applianceDataTable}</tbody>
+      </table>
     </div>
   );
 };
