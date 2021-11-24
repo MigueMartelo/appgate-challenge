@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## When you clone this repo, the first step that you need to do is execute
-### `yarn install` or simple `yarn install`
+### `yarn install` or simple `yarn`
 ## for install all dependencies that use the project.
 # Available Scripts for run the project locally
 
