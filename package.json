@@ -1,6 +1,8 @@
 {
   "name": "appgate-test",
   "version": "0.1.0",
+  "author": "Migue Martelo",
+  "Description": "Challenge for AppGate company",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -48,5 +50,5 @@
     "eslint-plugin-react": "^7.27.1",
     "prettier": "^2.4.1"
   },
-  "proxy": "https://controller.appgate-sdp.com:8080/"
+  "proxy": "https://controller1.runsdp.com:8080/"
 }
