@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 
+import './ApplianceStatus.scss';
+
 const ApplianceStatus = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState('');
@@ -31,6 +33,11 @@ const ApplianceStatus = () => {
     </tr>
   ));
 
+  const handleClick = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <div>
       <h1>ApplianceStatus</h1>
@@ -48,6 +55,9 @@ const ApplianceStatus = () => {
         </thead>
         <tbody>{applianceDataTable}</tbody>
       </table>
+      <button className="btn-logout" onClick={handleClick}>
+        Log out
+      </button>
     </div>
   );
 };

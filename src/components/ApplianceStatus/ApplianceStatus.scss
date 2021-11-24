@@ -1,0 +1,23 @@
+@import '../../colors';
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+  td, th {
+    border: 1px solid $grey-dark-color;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+tr:nth-child(even) {
+  background-color: $background-secondary;
+}
+
+.btn-logout {
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 10px;
+}
